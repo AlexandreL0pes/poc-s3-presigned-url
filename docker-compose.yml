@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend/
+    command: bash -c "cd backend && (bundle check || bundle install) && bundle exec puma -C config/puma.rb"
+    tty: true
+    volumes:
+      - .:/backend
+    ports:
+      - "3000:3000"
+  frontend:
+    build: ./frontend
+    command: sh -c "cd frontend && npm run dev"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/frontend
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - PERSISTENCE=/tmp/localstack/data
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=123
+      - AWS_SECRET_ACCESS_KEY=123
+      - DISABLE_CORS_CHECKS=1
+      - PROVIDER_OVERRIDE_S3=asf
+      - S3_SKIP_SIGNATURE_VALIDATION=1
+      - DEBUG=1
+    volumes:
+      - ./.localstack:/var/lib/localstack
+      - ./awslocal/init_localstack.sh:/etc/localstack/init/ready.d/init_localstack.sh
+
+networks:
+  default:
+    name: poc
