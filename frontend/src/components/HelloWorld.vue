@@ -45,6 +45,7 @@ const getPresignedUrl = async () => {
     const endpoint = "http://localhost:3000/api/s3/presigned_url"
     const response = await axios.get(endpoint)
 
+    console.log(response.data.url);
     return response.data.url
   } catch (error) {
     return null
