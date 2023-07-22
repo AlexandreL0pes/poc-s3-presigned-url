@@ -20,10 +20,7 @@ awslocal s3api put-bucket-cors\
         {
           "AllowedHeaders": ["*"],
           "AllowedMethods" : ["HEAD", "GET", "POST", "PUT", "DELETE"],
-          "AllowedOrigins" : [
-                "http://localhost:4000",
-                "http://localhost:3000"
-          ],
+          "AllowedOrigins": ["http://localhost:5173", "http://frontend:5173"],
           "ExposeHeaders": []
         }
       ]
