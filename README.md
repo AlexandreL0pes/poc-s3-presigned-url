@@ -24,5 +24,8 @@ aws --endpoint-url=http://localhost:4566 s3 ls s3://files
 
 ### Links
 
-- This article shows how to configure the reak s3 service
+- This article shows how to configure a real s3 service
 https://medium.com/@aidan.hallett/securing-aws-s3-uploads-using-presigned-urls-aa821c13ae8d
+
+- This video describes how create aws resources and IAM polices
+https://www.youtube.com/watch?v=yGYeYJpRWPM
